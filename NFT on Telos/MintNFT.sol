@@ -13,6 +13,9 @@ contract MyNFT {
   // Use mapping to store the information of each NFT
   mapping(uint256 => Token) private tokens;
 
+  // Use mapping to store the list of NFT IDs owned by each address
+  mapping(address => uint256[]) private ownerTokens;
+
   // Record the next available NFT ID.
   uint256 nextTokenId = 1;
 
