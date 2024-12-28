@@ -23,4 +23,14 @@ contract MyNFT {
     nextTokenId++;
     return nextTokenId-1;
   }
+
+  
+  //Create a function to get information on a specified NFT
+ function getNFT(uint256 _tokenId) public view returns (string memory name, string memory description, address owner) {
+    require(_tokenId >= 1 && _tokenId < nextTokenId, "Invalid token ID");
+    Token memory token = tokens[_tokenId];
+    name = token.name;
+    description = token.description;
+    owner = token.owner;
+  }
 }
