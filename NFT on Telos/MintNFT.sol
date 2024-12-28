@@ -37,4 +37,8 @@ contract MyNFT {
     description = token.description;
     owner = token.owner;
   }
+
+  function getTokensByOwner(address _owner) public view returns(uint256[] memory){
+    return ownerTokens[_owner];
+}
 }
