@@ -23,6 +23,7 @@ contract MyNFT {
   function mint(string memory _name, string memory _description) public returns (uint256) { 
     Token memory newNFT = Token(_name, _description, msg.sender);
     tokens[nextTokenId] = newNFT;
+    ownerTokens[msg.sender].push(nextTokenId);
     nextTokenId++;
     return nextTokenId-1;
   }
