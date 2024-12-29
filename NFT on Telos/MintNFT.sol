@@ -29,6 +29,14 @@ contract MyNFT {
   }
 
   
+  function transfer(address _to, uint256 _tokenId) public view {
+    require(_to != address(0), "Invalid recipient");
+    require(_tokenId >= 1 && _tokenId < nextTokenId, "Invalid token ID");
+    Token storage token = tokens[_tokenId];
+    require(token.owner == msg.sender, "You don't own this token");
+  }
+
+  
   //Create a function to get information on a specified NFT
  function getNFT(uint256 _tokenId) public view returns (string memory name, string memory description, address owner) {
     require(_tokenId >= 1 && _tokenId < nextTokenId, "Invalid token ID");
