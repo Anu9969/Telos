@@ -41,13 +41,15 @@ contract MyNFT {
   function getTokensByOwner(address _owner) public view returns(uint256[] memory){
     return ownerTokens[_owner];
 }
-
   function deleteById(address account, uint256 _tokenId) internal {
     uint256[] storage ownerTokenList = ownerTokens[account];
 
     for (uint256 i = 0; i < ownerTokenList.length; i++) {
       if (ownerTokenList[i] == _tokenId) {
-        
+        // Swap the NFT ID with the last element of the array, then delete the last element of the array.
+        ownerTokenList[i] = ownerTokenList[ownerTokenList.length - 1];
+        ownerTokenList.pop();
+        break;
       }
     }
   }
