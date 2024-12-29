@@ -29,11 +29,15 @@ contract MyNFT {
   }
 
   
-  function transfer(address _to, uint256 _tokenId) public view {
-    require(_to != address(0), "Invalid recipient");
-    require(_tokenId >= 1 && _tokenId < nextTokenId, "Invalid token ID");
+  function transfer(address _to, uint256 _tokenId) public {
+    require(_to != address(0), "Invalid recipien");
+    require(_tokenId >= 1 && _tokenId < nextTokenId, "Invalid TokenID");
     Token storage token = tokens[_tokenId];
     require(token.owner == msg.sender, "You don't own this token");
+    token.owner = _to;
+
+    deleteById(msg.sender, _tokenId);
+    ownerTokens[_to].push(_tokenId);
   }
 
   
