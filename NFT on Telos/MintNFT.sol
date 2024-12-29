@@ -70,7 +70,8 @@ contract MyNFT {
     require(_tokenId >= 1 && _tokenId < nextTokenId, "Invalid Token ID");
     Token storage token = tokens[_tokenId];
     require(token.owner == msg.sender, "You don't own this token");
-
+        deleteById(msg.sender, _tokenId);
+    delete tokens[_tokenId];
   }
 
 }
